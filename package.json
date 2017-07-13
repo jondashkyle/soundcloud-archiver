@@ -1,0 +1,17 @@
+{
+  "name": "soundcloud-archiver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Jon-Kyle <contact@jon-kyle.com> (http://jon-kyle.com)",
+  "license": "ISC",
+  "dependencies": {
+    "choo": "^6.0.0-3",
+    "gr8": "^2.1.8",
+    "xtend": "^4.0.1"
+  }
+}
