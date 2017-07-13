@@ -7,6 +7,12 @@ it is rumored that soundcloud may be shuttering soon. it is a useful opertunity 
 - **dev**: `npm run dev` to spin up a local sever and watch for changes
 - **build**: `npm run build` to bundle the js and generate an index file
 
+## quick thoughts
+
+- sound salvage name
+- domain?
+- have a checkbox agreeing to only downloading music upload to your soundcloud account which must be checked before going.
+
 ## flow
 
 - a paragraph about what is happening, and why

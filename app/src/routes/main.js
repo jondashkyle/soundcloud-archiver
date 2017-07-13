@@ -15,10 +15,6 @@ function mainView (state, emit) {
         <button onclick=${onclick}>Increment</button>
         <a href="/test">testing yo</a>
       </div>
-      <div class="x">
-        <div class="xx p1">hi</div>
-        <div class="xx p1">there</div>
-      </div>
     </body>
   `
 

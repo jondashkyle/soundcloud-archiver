@@ -47,7 +47,7 @@ function options (defaults) {
 function render (req, res, ctx) {
   // put auth stuff etc here
   return function (route) {
-    assert(typeof route !== 'string', 'Invalid route')
+    assert(typeof route === 'string', 'Invalid route')
     try {
       return client.toString(route, client.state)
     } catch (err) {
