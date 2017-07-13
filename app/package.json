@@ -1,0 +1,40 @@
+{
+  "name": "project-starterkit-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "js-build": "browserify src/ -t envify -t brfs -t read-directory/transform -g yo-yoify -g es2040 -g uglifyify > dist/bundle.js",
+    "js-watch": "watchify src/ -o dist/bundle.js -t [ envify --NODE_ENV development ] -t brfs -t read-directory/transform",
+    "css-build": "node src/design/ | postcss --no-map --use autoprefixer --use postcss-clean > dist/bundle.css",
+    "css-watch": "watch 'node src/design/ > dist/bundle.css' src/design/",
+    "build": "npm run js-build && npm run css-build",
+    "start": "concurrently \"npm run js-watch\" \"npm run css-watch\""
+  },
+  "keywords": [],
+  "author": "Jon-Kyle <contact@jon-kyle.com> (http://jon-kyle.com)",
+  "license": "ISC",
+  "dependencies": {
+    "choo": "^6.0.0-2",
+    "choo-log": "^6.1.2",
+    "gr8": "^2.1.8",
+    "nano-markdown": "^1.2.0",
+    "recsst": "^1.1.2",
+    "xhr": "^2.4.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.1",
+    "brfs": "^1.4.3",
+    "browserify": "^14.4.0",
+    "concurrently": "^3.5.0",
+    "envify": "^4.0.0",
+    "es2040": "^1.2.5",
+    "postcss-clean": "^1.0.2",
+    "postcss-cli": "^4.1.0",
+    "read-directory": "^2.1.0",
+    "uglifyify": "^4.0.2",
+    "watch": "^1.0.2",
+    "watchify": "^3.9.0",
+    "yo-yoify": "^3.7.3"
+  }
+}
