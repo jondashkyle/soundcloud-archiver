@@ -1,6 +1,6 @@
 # soundcloud-archiver
 
-it is rumored that soundcloud may be shuttering soon. regardless of the acuracy of these claims, it is a useful opertunity to tell people about why data ownership is important, and provide a tool for backing up and sharing their tracks.
+it is rumored that soundcloud may be shuttering soon. it is a useful opertunity to tell people about why data ownership is important, and provide a tool for backing up and sharing their tracks.
 
 ## design
 
