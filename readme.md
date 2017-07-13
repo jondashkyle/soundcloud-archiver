@@ -4,7 +4,7 @@ it is rumored that soundcloud may be shuttering soon. it is a useful opertunity 
 
 ## flow
 
-- a paragraph about what is happening, why, and alternative
+- a paragraph about what is happening, and why
 - enter a soundcloud url
 - download the tracks and metadata into a dat:// archive
 - write meta-data json to the archive
