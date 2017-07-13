@@ -2,6 +2,11 @@
 
 it is rumored that soundcloud may be shuttering soon. it is a useful opertunity to tell people about why data ownership is important, and provide a tool for backing up and sharing their tracks.
 
+## contributing
+
+- **dev**: `npm run dev` to spin up a local sever and watch for changes
+- **build**: `npm run build` to bundle the js and generate an index file
+
 ## flow
 
 - a paragraph about what is happening, and why

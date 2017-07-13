@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "browserify src/ -o bundle.js -t brfs -g es2040",
+    "dev": "budo src/ -- -t brfs"
   },
   "keywords": [],
   "author": "Jon-Kyle <contact@jon-kyle.com> (http://jon-kyle.com)",
@@ -13,5 +14,12 @@
     "choo": "^6.0.0-3",
     "gr8": "^2.1.8",
     "xtend": "^4.0.1"
+  },
+  "devDependencies": {
+    "brfs": "^1.4.3",
+    "browserify": "^14.4.0",
+    "budo": "^10.0.3",
+    "es2040": "^1.2.6",
+    "yo-yoify": "^3.7.3"
   }
 }
