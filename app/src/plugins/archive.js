@@ -2,9 +2,11 @@ var mutate = require('xtend/mutable')
 var xhr = require('xhr')
 
 var ws
+
+// hax
 var wsPath = process.env.NODE_ENV === 'development'
   ? 'localhost:8081'
-  : '104.236.80.10:1002'
+  : 'soundcloud.jon-kyle.com/ws'
 
 module.exports = archive
 
