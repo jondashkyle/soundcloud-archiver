@@ -1,5 +1,4 @@
 var toiletdb = require('toiletdb')
-var Cookies = require('universal-cookie')
 var assert = require('assert')
 var yaml = require('js-yaml')
 var xtend = require('xtend')
@@ -51,11 +50,7 @@ function options (defaults) {
 
 // handle client routes
 function render (req, res, ctx) {
-  var state = {
-    user: {
-      authorized: authorized(req, res, ctx)
-    }
-  }
+  var state = { }
 
   return function (route) {
     assert(typeof route === 'string', 'Invalid route')
@@ -65,15 +60,6 @@ function render (req, res, ctx) {
     } catch (err) {
       return '404'
     }
-  }
-}
-
-function authorized (req, res, ctx) {
-  try {
-    var cookies = new Cookies(req.headers.cookie)
-    return cookies.get('authorized')
-  } catch (err) {
-    return false
   }
 }
 
