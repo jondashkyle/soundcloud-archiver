@@ -22,10 +22,7 @@ function mainView (state, emit) {
             * please don’t abuse this, it’s made for personal use to archive only your tracks
           </div>
         </div>
-        <form
-          class="db m1 usn fs2 ffsans psr" sm="fs2"
-          onsubmit=${handleSubmit}
-        >
+        <div class="db m1 usn fs2 ffsans psr" sm="fs2">
           <div class="${state.archive.id ? 'op25 pen' : ''}">
             ${[
               elUrl(state.archive.url, state.archive.error ,handleInput),
@@ -33,13 +30,13 @@ function mainView (state, emit) {
                 ? elAgree(state.archive.agree, handleInput)
                 : html`<div></div>`,
               state.archive.agree && state.archive.url
-                ? elSubmit()
+                ? elSubmit(handleSubmit)
                 : html`<div></div>`
             ].map(el => html`<div class="p1">${el}</div>`)}
           </div>
           <div class="psa t0 l0 r0 b0 x xjc xac ${state.archive.id ? 'x' : 'dn'}">
           </div>
-        </form>
+        </div>
         ${state.archive.key
           ? elPrepairing(state.content.prepairing, state.archive.key)
           : html`<div></div>`
@@ -63,7 +60,7 @@ function mainView (state, emit) {
 
   function handleSubmit (event) {
     var approved = verifyArchive(state.archive)
-    event.preventDefault()
+    if (event) event.preventDefault();
     if (approved === true) {
       emit(state.events.ARCHIVE_CREATE, { url: state.archive.url })
     } else {
@@ -124,10 +121,11 @@ function elAgree (agree, onchange) {
   }
 }
 
-function elSubmit () {
+function elSubmit (onclick) {
   return html`
     <button
       type="submit"
+      onclick=${onclick}
       class="curp db c12 p2 fs2 ffsans bgblack tcwhite"
     >let’s get started!</button>
   `
