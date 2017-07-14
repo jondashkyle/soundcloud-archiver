@@ -2,6 +2,8 @@
 
 it is rumored that soundcloud may be shuttering soon. it is a useful opertunity to tell people about why data ownership is important, and provide a tool for backing up and sharing their tracks.
 
+this is a super sloppy build b/c it was done in around 10 hours.
+
 ## todo
 
 - [ ] validate the url is a souncloud url on submit
