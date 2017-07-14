@@ -9,10 +9,13 @@ it is rumored that soundcloud may be shuttering soon. it is a useful opertunity 
 - [x] keep db of added dats with timestamps
 - [ ] setup a cron job to delete them after 15 minutes reading from db
 
-## contributing
+## scripts
+
+make sure you have youtube-dl installed!
 
 - **dev**: `npm run dev` to spin up a local sever and watch for changes
 - **build**: `npm run build` to bundle the js and generate an index file
+- **start**: for production after having built
 
 ## flow
 
