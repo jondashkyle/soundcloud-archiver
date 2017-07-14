@@ -1,5 +1,6 @@
 exports.colors = {
   black: '#000',
+  red: '#f33',
   white: '#fff'
 }
 

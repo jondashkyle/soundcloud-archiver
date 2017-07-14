@@ -11,7 +11,7 @@ module.exports = Archive
 
 function Archive (options, emitter) {
   var dest = options.dest || '.'
-  var template = options.template || ''
+  var template = fs.readFileSync(path.join(__dirname, 'template.html'))
   var archive = hyperdrive(path.join(dest, 'dat'))
   var music = path.join(dest, 'youtube-dl')
   var mutex = mutexify()
@@ -20,7 +20,7 @@ function Archive (options, emitter) {
   var url = options.url
 
   if (!url) {
-    emitter.emit('error', { message: 'No URL provided' })
+    emitter.emit('error', { error: 'no url provided' })
     emitter.emit('finished')
   }
 
@@ -29,7 +29,10 @@ function Archive (options, emitter) {
     hyperdiscovery(archive, {live: true})
     archive.readFile('music.json', 'utf-8', function (_, data) {
       if (data) all = JSON.parse(data)
-      download(url, onfile, done)
+      archive.readFile('index.html', 'utf-8', function (_, html) {
+        if (html !== template) archive.writeFile('index.html', template)
+        download(url, onfile, done)
+      })
     })
   })
 
@@ -70,11 +73,10 @@ function Archive (options, emitter) {
 
   function done (err) {
     if (err) {
-      emitter.emit('error', { message: err.message })
       return
     }
     mutex(function (release) {
-      emitter.emit('finished', { message: 'Downloaded all music from Soundcloud' })
+      emitter.emit('finished', { finished: 'all your tunes synced!' })
       release()
     })
   }
@@ -92,7 +94,10 @@ function Archive (options, emitter) {
       c.on('error', cb)
       c.on('exit', function (code) {
         c = null
-        if (code) return cb(new Error('Bad exit code: ' + code))
+        if (code) {
+          emitter.emit('error', { error: 'can’t locate an account' })
+          return cb(new Error('Bad exit code: ' + code))
+        }
         cb(null)
       })
       fs.watch(music, onchange)

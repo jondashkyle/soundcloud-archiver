@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Your tunes</title>
+    <meta charset="utf8-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <style>
+      * { margin: 0; padding: 0; }
+
+      body {
+        background: #ddd;
+        margin: 1rem;
+        line-height: 1.5;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+        font-size: 16px;
+      }
+
+      .track {
+        background: #fff;
+        font-size: 1.4rem;
+        font-weight: bold;
+        border-radius: 3px;
+        padding: 1rem;
+        margin: 1rem;
+      }
+
+      audio {
+        margin-top: 1rem;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      /**
+       * this is very sloppy, sorry!
+       */
+      var request = new XMLHttpRequest()
+      request.open('GET', 'music.json')
+      request.responseType = 'text'
+
+      request.send()
+      request.addEventListener('load', function () {
+        var resp = request.response
+        showTracks(JSON.parse(resp))
+      })
+
+      function showTracks (_tracks) {
+        var tracks = _tracks || [ ]
+        tracks.forEach(function (track) {
+          var el = document.createElement('div')
+          var audio = document.createElement('audio')
+          var title = document.createElement('div')
+
+          el.setAttribute('class', 'track')
+          audio.src = track.path
+          audio.controls = true
+          title.innerHTML = track.name
+
+          el.appendChild(title)
+          el.appendChild(audio)
+          document.body.appendChild(el)
+        })
+      }
+    </script>
+  </body>
+</html>

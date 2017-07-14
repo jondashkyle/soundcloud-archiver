@@ -8,6 +8,7 @@ it is rumored that soundcloud may be shuttering soon. it is a useful opertunity 
 - [x] add messaging to interface
 - [x] keep db of added dats with timestamps
 - [ ] setup a cron job to delete them after 15 minutes reading from db
+- [ ] notify completion of the archive
 
 ## scripts
 

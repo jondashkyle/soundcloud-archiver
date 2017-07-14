@@ -32,6 +32,8 @@ function Api (server, options) {
     // dat archive
     bus.on('ready', handleArchiveReady)
     bus.on('added', handleArchiveAdded)
+    bus.on('error', handleArchiveError)
+    bus.on('finished', handleArchiveFinished)
 
     // setup state
     archivesdb.write(id, { })
@@ -71,9 +73,21 @@ function Api (server, options) {
       send(data)
     }
 
+    function handleArchiveFinished (data) {
+      archivedb.write('finished', Date.now())
+      send(data)
+    }
+
+    function handleArchiveError (data) {
+      console.log(data)
+      send(data)
+    }
+
     // communicate with our ws
     function send (data) {
-      ws.send(JSON.stringify(data))
+      if (ws.isAlive) {
+        ws.send(JSON.stringify(data))
+      }
     }
   }
 }

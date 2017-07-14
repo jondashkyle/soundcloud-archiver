@@ -1,0 +1,3 @@
+ok great, your archive has fully synced now. hope this was useful. you have a few hours to fork your dat:// archive before it’s removed from this tool.
+
+here is [some](https://motherboard.vice.com/en_us/article/bjxy9d/a-new-browser-is-making-peer-to-peer-web-hosting-more-user-friendly) [more](http://boingboing.net/2017/06/06/opencola-reborn.html) [info](https://beakerbrowser.com/docs/) on beaker. thanks!

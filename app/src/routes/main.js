@@ -6,10 +6,10 @@ module.exports = mainView
 function mainView (state, emit) {
   return html`
     <main class="c12 oh">
-      <div class="ffsans psf t0 r0 z2 m0-5 ${state.archive.id ? 'db' : 'dn'}" sm="l0">
+      <div class="ffsans psf t0 r0 z2 m0-5 pen" sm="l0">
         ${state.notifications.length > 0
           ? elNotifications(state.notifications)
-          : html`<div class="m0-5"><div class="loader"></div></div>`
+          : html`<div class="m0-5 ${state.archive.id && !state.archive.finished ? 'db' : 'dn'}"><div class="loader"></div></div>`
         }
       </div>
       <div class="fs4 lh1-1">
@@ -18,6 +18,9 @@ function mainView (state, emit) {
         </div>
         <div class="ffserif p2">
           ${md(state.content.home)}
+          <span class="ffsans fs1 ttu">
+            * please don’t abuse this, it’s made for personal use to archive only your tracks
+          </div>
         </div>
         <form
           class="db m1 usn fs2 ffsans psr" sm="fs2"
@@ -25,7 +28,7 @@ function mainView (state, emit) {
         >
           <div class="${state.archive.id ? 'op25 pen' : ''}">
             ${[
-              elUrl(state.archive.url, handleInput),
+              elUrl(state.archive.url, state.archive.error ,handleInput),
               state.archive.url
                 ? elAgree(state.archive.agree, handleInput)
                 : html`<div></div>`,
@@ -41,6 +44,18 @@ function mainView (state, emit) {
           ? elPrepairing(state.content.prepairing, state.archive.key)
           : html`<div></div>`
         }
+        ${state.archive.key && !state.archive.finished
+          ? html`<div class="p2 ffserif">now, let’s wait for it to finish…</div>`
+          : html`<div></div>`
+        }
+        ${state.archive.finished
+          ? elFinished(state.content.finished)
+          : html`<div></div>`
+        }
+        ${state.archive.finished
+          ? html`<div class="fs1 ffsans psf b0 l0 r0 z2 bgblack tcwhite lh1 p1">dat://${state.archive.key}</div>`
+          : html`<div></div>`
+        }
       </div>
       <div style="height: 25vh"></div>
     </main>
@@ -52,7 +67,7 @@ function mainView (state, emit) {
     if (approved === true) {
       emit(state.events.ARCHIVE_CREATE, { url: state.archive.url })
     } else {
-      alert('Please enter a valid URL and agree to the terms!')
+      emit(state.events.ARCHIVE_NOTIFY, { message: 'please enter a url and agree!' })
     }
   }
 
@@ -61,7 +76,7 @@ function mainView (state, emit) {
   }
 }
 
-function elUrl (url, oninput) {
+function elUrl (url, error, oninput) {
   return html`
     <input
       placeholder="soundcloud.com/your-url-here"
@@ -69,7 +84,7 @@ function elUrl (url, oninput) {
       value="${url}"
       oninput=${handleInput}
       style="border: 0; outline: 0;"
-      class="fs2 ffsans bgblack tcwhite c12 p2"
+      class="fs2 ffsans tcwhite ${error ? 'bgred' : 'bgblack'} c12 p2"
       sm="fs2"
     />
   `
@@ -127,9 +142,19 @@ function elPrepairing (content, key, track) {
   `
 }
 
+function elFinished (content) {
+  return html`
+    <div class="ffserif p2">
+      ${md(content)}
+    </div>
+  `
+}
+
 function elNotifications (notifications) {
   return notifications.map(function (name) {
-    return html`<div class="tar"><span class="dib m0-5 p1 bgblack tcwhite">added ${name}</span></div>`
+    return html`
+      <div class="tar"><span class="dib m0-5 p1 bgblack tcwhite">${name}</span></div>
+    `
   })
 }
 
