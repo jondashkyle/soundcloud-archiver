@@ -4,7 +4,7 @@ var xhr = require('xhr')
 var ws
 var wsPath = process.env.NODE_ENV === 'development'
   ? 'localhost:8081'
-  : 'soundcloud.jon-kyle.com:1002'
+  : 'soundcloud.jon-kyle.com/ws'
 
 module.exports = archive
 
