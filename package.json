@@ -3,6 +3,9 @@
   "version": "2.0.0",
   "description": "",
   "main": "index.js",
+  "bin": {
+    "cleanup": "cleanup.js"
+  },
   "scripts": {
     "start": "PORT=7000 node .",
     "build": "cd app && npm run build",

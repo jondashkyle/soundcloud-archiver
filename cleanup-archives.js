@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 var fs = require('fs')
 var path = require('path')
 var rimraf = require('rimraf')
@@ -33,13 +35,3 @@ archivesdb.read(function (err, data) {
     // readArchive
   })
 })
-
-
-// .forEach(function (key) {
-//   var date = db.archives[key].date
-//   if (date) {
-//     console.log(now, date)
-//   } else {
-
-//   }
-// })
