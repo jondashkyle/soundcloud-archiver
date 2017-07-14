@@ -51,6 +51,7 @@ a:hover {
 }
 
 input, button {
+  font-weight: 200;
   border: 0;
   outline: 0;
 }
