@@ -1,8 +1,0 @@
-# app
-port: 8080
-wsport: 8081
-domain: localhost
-bundles: app/dist
-content: static
-db: .db.json
-htmlMinify: true
