@@ -3,6 +3,7 @@ var assert = require('assert')
 var yaml = require('js-yaml')
 var xtend = require('xtend')
 var npath = require('path')
+var path = require('path')
 var fs = require('fs')
 
 var routes = require('./app/src/routes')
@@ -18,7 +19,7 @@ var config = options({
   content: 'content/'
 })
 
-var db = toiletdb(config.db)
+var db = toiletdb(path.join(__dirname, config.db))
 
 var app = server({
   db: db,

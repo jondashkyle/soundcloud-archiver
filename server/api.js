@@ -1,3 +1,4 @@
+var path = require('path')
 var uuid = require('uuid')
 var subtoilet = require('subtoilet')
 var nanobus = require('nanobus')
@@ -42,7 +43,7 @@ function Api (server, options) {
     function handleMessage (data) {
       try {
         archive = Archive({
-          dest: './.tracks/' + id,
+          dest: path.join(__dirname, '../.tracks', id),
           url: data.url
         }, bus)
       } catch (err) {
