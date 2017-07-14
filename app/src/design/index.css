@@ -21,19 +21,20 @@ p+p {
 a {
   text-decoration: none;
   color: #000;
+  font-weight: 200;
 }
 
 .ffserif b,
 .ffserif a {
   font-family: 'Work Sans', sans-serif;
-  font-weight: normal;
+  font-weight: 200;
 }
 
 .ffsans b,
 .ffsans a {
   font-family: 'Spectral', sans-serif;
   font-size: 1.07em;
-  font-weight: normal;
+  font-weight: 200;
 }
 
 .sans, .ffserif a {
