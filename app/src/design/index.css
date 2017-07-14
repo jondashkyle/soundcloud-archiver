@@ -1,0 +1,69 @@
+html {
+  font-size: 1.8vw;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  word-wrap: break-word;
+}
+
+h1, h2, h3, h4 {
+  font-weight: normal;
+}
+
+p+p {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+.ffserif b,
+.ffserif a {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: normal;
+}
+
+.ffsans b,
+.ffsans a {
+  font-family: 'Spectral', sans-serif;
+  font-size: 1.07em;
+  font-weight: normal;
+}
+
+.sans, .ffserif a {
+  font-size: 0.93em;
+}
+
+a:hover {
+  animation: blink 250ms steps(1, end) infinite;
+}
+
+@keyframes blink {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+input, button {
+  border: 0;
+  outline: 0;
+}
+
+.loader {
+  border: 0.15rem solid transparent;
+  border-top: 0.15rem solid #000;
+  border-right: 0.15rem solid #000;
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(360deg) }
+}

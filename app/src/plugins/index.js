@@ -1,5 +1,8 @@
-module.exports =  {
-  events: require('./events'),
-  log: require('./log'),
-  count: require('./count')
+module.exports = {
+  content: require('./content'),
+  archive: require('./archive')
+}
+
+if (process.env.NODE_ENV === 'development') {
+  module.exports.log = require('./log')
 }

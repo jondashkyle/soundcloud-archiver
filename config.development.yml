@@ -1,9 +1,12 @@
 # app
 port: 8080
+wsport: 8081
 bundles: app/dist
 content: static
-db: .db
+db: .db.json
 htmlMinify: true
+domains:
+  - localhost:8080
 
 # site
 site:

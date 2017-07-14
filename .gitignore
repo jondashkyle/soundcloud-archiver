@@ -2,6 +2,9 @@
 node_modules/
 
 .db
+.tracks
+.db.json
+
 bundle.js
 bundle.css
 index.html

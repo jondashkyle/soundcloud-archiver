@@ -15,11 +15,12 @@
   "author": "Jon-Kyle <contact@jon-kyle.com> (http://jon-kyle.com)",
   "license": "ISC",
   "dependencies": {
-    "choo": "^6.0.0-2",
+    "choo": "^6.0.0-3",
     "choo-log": "^6.1.2",
     "gr8": "^2.1.8",
     "nano-markdown": "^1.2.0",
     "recsst": "^1.1.2",
+    "uuid": "^3.1.0",
     "xhr": "^2.4.0"
   },
   "devDependencies": {

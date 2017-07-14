@@ -1,8 +1,11 @@
+var fs = require('fs')
+var path = require('path')
 var gr8 = require('gr8')
 var recsst = require('recsst')
 
 var settings = require('./settings')
-var css = gr8()
+var custom = fs.readFileSync(path.join(__dirname, 'index.css'), 'utf8')
+var css = gr8(settings)
 
 css.add({
   prop: 'background-color',
@@ -23,8 +26,9 @@ css.add({
 
 // concat
 var output = [
+  recsst.toString(),
   css.toString(),
-  recsst.toString()
+  custom
 ].join('\n')
 
 // export

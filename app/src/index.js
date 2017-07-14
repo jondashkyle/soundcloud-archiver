@@ -4,7 +4,7 @@ var plugins = require('./plugins')
 var app = choo()
 
 // plugins
-Object.keys(plugins).forEach(function(plugin) {
+Object.keys(plugins).forEach(function (plugin) {
   app.use(plugins[plugin])
 })
 
@@ -17,5 +17,5 @@ Object.keys(routes).forEach(function (route) {
 if (module.parent) {
   module.exports = app
 } else {
-  app.mount('body')
+  app.mount('main')
 }

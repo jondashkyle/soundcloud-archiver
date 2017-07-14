@@ -1,7 +1,7 @@
+var toiletdb = require('toiletdb')
 var Cookies = require('universal-cookie')
 var assert = require('assert')
 var yaml = require('js-yaml')
-var level = require('level')
 var xtend = require('xtend')
 var npath = require('path')
 var fs = require('fs')
@@ -12,19 +12,24 @@ var server = require('./server')
 
 var config = options({
   port: process.env.PORT,
-  db: '.db',
+  wsport: parseInt(process.env.PORT) + 1,
+  domains: [ ],
+  db: '.db.json',
   bundles: 'app/dist/',
   content: 'content/'
 })
 
-var db = level(config.db)
+var db = toiletdb(config.db)
 
 var app = server({
   db: db,
   routes: routes,
   render: render,
+  port: config.port,
+  wsport: config.wsport,
   bundles: config.bundles,
   content: config.content,
+  domains: config.domains,
   site: config.site
 })
 

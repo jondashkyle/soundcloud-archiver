@@ -5,6 +5,7 @@ var merry = require('merry')
 var xtend = require('deep-extend')
 var npath = require('path')
 var send = require('send')
+var WebSocket = require('ws')
 
 var Api = require('./api')
 var server = merry()
@@ -26,11 +27,16 @@ function setup (opts) {
     render: render,
     site: {
       title: 'Starterkit',
-      head: '<meta name="viewport" content="width=device-width, initial-scale=1">'
+      head: '<link href="https://fonts.googleapis.com/css?family=Spectral:200|Work+Sans:200" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1">'
     }
   }, opts)
 
-  var api = Api({
+  var wss = new WebSocket.Server({ port: options.wsport })
+
+  var api = Api(server, {
+    db: options.db,
+    domains: options.domains,
+    wss: wss,
     db: options.db
   })
 
