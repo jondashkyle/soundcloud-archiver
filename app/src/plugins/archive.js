@@ -6,7 +6,7 @@ var ws
 // hax
 var wsPath = process.env.NODE_ENV === 'development'
   ? 'localhost:8081'
-  : 'soundcloud.jon-kyle.com/ws'
+  : 'soundsalvage.jon-kyle.com/ws'
 
 module.exports = archive
 
