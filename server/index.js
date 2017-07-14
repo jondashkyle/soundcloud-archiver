@@ -2,7 +2,7 @@ var minifyHTML = require('html-minifier')
 var createHTML = require('create-html')
 var assert = require('assert')
 var merry = require('merry')
-var xtend = require('xtend')
+var xtend = require('deep-extend')
 var npath = require('path')
 var send = require('send')
 
@@ -24,7 +24,6 @@ function setup (opts) {
     content: './content',
     routes: { },
     render: render,
-    htmlMinify: false,
     site: {
       title: 'Starterkit',
       head: '<meta name="viewport" content="width=device-width, initial-scale=1">'
@@ -47,7 +46,7 @@ function setup (opts) {
   // static / 404
   server.route('default', function (req, res, ctx) {
     send(req, req.url, {
-      root: npath.join(process.cwd(), options.content)
+      root: npath.join(__dirname, '../', options.content)
     })
       .on('error', error(req, res, ctx))
       .pipe(res)
@@ -76,7 +75,7 @@ function setup (opts) {
   // bundle assets
   function bundle (req, res, ctx) {
     send(req, ctx.params.asset, {
-      root: npath.join(process.cwd(), options.bundles)
+      root: npath.join(__dirname, '../', options.bundles)
     }).pipe(res)
   }
 
@@ -84,24 +83,15 @@ function setup (opts) {
   function view (route, render) {
     assert(typeof route === 'string', 'Please provide route')
     assert(typeof render === 'function', 'Please provide render function')
-
-    var htmlOpts = xtend({
+    var htmlOptions = xtend({
       script: '/bundles/bundle.js',
       css: '/bundles/bundle.css',
       body: render(route)
     }, options.site)
-
-    var htmlOutput = createHTML(htmlOpts)
-
-    // minification
-    if (options.htmlMinify) {
-      return minifyHTML.minify(htmlOutput, {
-        minifyCSS: true,
-        collapseWhitespace: true
-      })
-    } else {
-      return htmlOutput
-    }
+    return minifyHTML.minify(createHTML(htmlOptions), {
+      minifyCSS: true,
+      collapseWhitespace: true
+    })
   }
 }
 
