@@ -26,7 +26,7 @@ function setup (opts) {
     routes: { },
     render: render,
     site: {
-      title: 'sound salvager',
+      title: 'sound salvage',
       head: '<link href="https://fonts.googleapis.com/css?family=Spectral:200|Work+Sans:200" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1">'
     }
   }, opts)
