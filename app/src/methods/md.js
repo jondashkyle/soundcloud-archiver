@@ -6,7 +6,7 @@ module.exports = format
 function format (str) {
   var output = md(str)
   if (typeof global.window === 'undefined') {
-    var wrapper = String(output)
+    var wrapper = new String(output)
     wrapper.__encoded = true
     return wrapper
   } else {
