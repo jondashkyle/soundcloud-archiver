@@ -13,7 +13,7 @@ var server = require('./server')
 var config = options({
   port: process.env.PORT,
   wsport: parseInt(process.env.PORT) + 1,
-  domains: [ ],
+  domain: 'localhost',
   db: '.db.json',
   bundles: 'app/dist/',
   content: 'content/'
@@ -76,3 +76,5 @@ function authorized (req, res, ctx) {
     return false
   }
 }
+
+module.exports = config

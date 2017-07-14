@@ -2,6 +2,9 @@ var mutate = require('xtend/mutable')
 var xhr = require('xhr')
 
 var ws
+var wsPath = process.env.NODE_ENV === 'development'
+  ? 'localhost:8081'
+  : 'soundcloud.jon-kyle.com:1002'
 
 module.exports = archive
 
@@ -27,7 +30,7 @@ function archive (state, emitter) {
 
   emitter.on(state.events.ARCHIVE_CREATE, function (data) {
     try {
-      ws = new WebSocket('ws://localhost:8081')
+      ws = new WebSocket('ws://' + wsPath)
 
       ws.addEventListener('open', function (event) {
         ws.send(JSON.stringify({ url: state.archive.url }))
