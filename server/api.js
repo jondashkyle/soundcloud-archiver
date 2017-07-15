@@ -64,8 +64,9 @@ function Api (server, options) {
         var total = data || 0
         db.write('total', parseInt(total) + 1)
       })
-      archivedb.write('url', data.url)
-      archivedb.write('date', Date.now())
+      archivedb.write('date', Date.now(), function () {
+        archivedb.write('url', data.url)
+      })
       send(data)
     }
 

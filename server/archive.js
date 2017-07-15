@@ -25,7 +25,7 @@ function Archive (options, emitter) {
   }
 
   archive.on('ready', function () {
-    emitter.emit('ready', { key: archive.key.toString('hex') })
+    emitter.emit('ready', { key: archive.key.toString('hex'), url: url })
     hyperdiscovery(archive, {live: true})
     archive.readFile('music.json', 'utf-8', function (_, data) {
       if (data) all = JSON.parse(data)
