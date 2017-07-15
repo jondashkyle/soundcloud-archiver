@@ -18,8 +18,8 @@ function mainView (state, emit) {
         </div>
         <div class="ffserif p2">
           ${md(state.content.home)}
-          <span class="ffsans fs1 ttu">
-            * please don’t abuse this, it’s made for personal use to archive only your tracks
+          <div class="ffsans fs1 ttu lh1-5">
+            * there is a high volume of traffic right now. don’t download 100 of your podcasts. if it doesn’t work, please be patient. also, don’t abuse this, it’s made for personal use to archive only your tracks. ok thanks.
           </div>
         </div>
         <div class="db m1 usn fs2 ffsans psr" sm="fs2">
