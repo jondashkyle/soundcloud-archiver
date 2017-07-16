@@ -19,18 +19,22 @@ archivesdb.read(function (err, data) {
   if (err) console.warn(err.message)
   if (!data) return console.warn('no data')
   Object.keys(data).forEach(function (key) {
-    var date = data[key].finished
-    if (date) {
-      var timeDiff = Math.abs(new Date(now).getTime() - new Date(date).getTime())
-      var diff = Math.ceil(timeDiff / (1000 * 60))
-      // delete if it’s old
-      if (diff > 15) {
-        try {
-          rimraf.sync(path.join(__dirname, '.tracks/', key))
-        } catch (err) {
-          console.log('can not remove ' + key)
-        }
-      }
+    var started = data[key].date
+    var finished = data[key].finished
+
+    if (finished && getDiff(finished) > 15) {
+      rimraf(path.join(__dirname, '.tracks/', key), () => { })
+    } else if (started && getDiff(started) > 30) {
+      rimraf(path.join(__dirname, '.tracks/', key), () => { })
+    } else {
+      rimraf(path.join(__dirname, '.tracks/', key), () => { })
     }
+  })
+})
+
+function getDiff (date) {
+  var diff = Math.abs(new Date(now).getTime() - new Date(date).getTime())
+  return Math.ceil(diff / (1000 * 60))
+}
   })
 })
