@@ -36,5 +36,3 @@ function getDiff (date) {
   var diff = Math.abs(new Date(now).getTime() - new Date(date).getTime())
   return Math.ceil(diff / (1000 * 60))
 }
-  })
-})
