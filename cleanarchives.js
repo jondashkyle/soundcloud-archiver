@@ -26,8 +26,6 @@ archivesdb.read(function (err, data) {
       rimraf(path.join(__dirname, '.tracks/', key), () => { })
     } else if (started && getDiff(started) > 30) {
       rimraf(path.join(__dirname, '.tracks/', key), () => { })
-    } else {
-      rimraf(path.join(__dirname, '.tracks/', key), () => { })
     }
   })
 })
